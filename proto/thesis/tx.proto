@@ -1,0 +1,29 @@
+syntax = "proto3";
+package thesis.thesis;
+
+// this line is used by starport scaffolding # proto/tx/import
+
+option go_package = "thesis/x/thesis/types";
+
+// Msg defines the Msg service.
+service Msg {
+      rpc CreateThesis(MsgCreateThesis) returns (MsgCreateThesisResponse);
+// this line is used by starport scaffolding # proto/tx/rpc
+}
+
+message MsgCreateThesis {
+  string creator = 1;
+  string title = 2;
+  string file = 3;
+  string createdAt = 4;
+  string language = 5;
+  string topic = 6;
+  string pageCount = 7;
+  string author = 8;
+}
+
+message MsgCreateThesisResponse {
+  uint64 id = 1;
+}
+
+// this line is used by starport scaffolding # proto/tx/message
