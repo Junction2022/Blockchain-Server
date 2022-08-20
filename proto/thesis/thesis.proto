@@ -1,4 +1,4 @@
-syntax = "proto3"
+syntax = "proto3";
 package thesis.thesis;
 
 option go_package = "thesis/x/thesis/types";
@@ -9,6 +9,6 @@ message Thesis {
     string createdAt = 3;
     string language = 4;
     string topic = 5;
-    uint64 pageCount = 6;
+    string pageCount = 6;
     string author = 7;
 }

@@ -32,7 +32,7 @@ func (k Keeper) Thesises(c context.Context, req *types.QueryThesisRequest) (*typ
       return err
     }
 
-    thesisList = append(thesises, &thesis)
+    thesises = append(thesises, &thesis)
 
     return nil
   })
@@ -41,5 +41,5 @@ func (k Keeper) Thesises(c context.Context, req *types.QueryThesisRequest) (*typ
     return nil, status.Error(codes.Internal, err.Error())
   }
 
-  return &types.QueryThesisResponse{Thesis: thesisList, Pagination: pageRes}, nil
+  return &types.QueryThesisResponse{Thesis: thesises, Pagination: pageRes}, nil
 }

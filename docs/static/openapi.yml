@@ -51814,6 +51814,10 @@ definitions:
       number of blocks
   thesis.thesis.MsgCreateThesisResponse:
     type: object
+    properties:
+      id:
+        type: string
+        format: uint64
   thesis.thesis.Params:
     type: object
     description: Params defines the parameters for the module.

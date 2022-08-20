@@ -20,7 +20,10 @@ export interface RpcStatus {
   details?: ProtobufAny[];
 }
 
-export type ThesisMsgCreateThesisResponse = object;
+export interface ThesisMsgCreateThesisResponse {
+  /** @format uint64 */
+  id?: string;
+}
 
 /**
  * Params defines the parameters for the module.
