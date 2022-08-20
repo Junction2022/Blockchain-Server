@@ -23,13 +23,14 @@ var _ = math.Inf
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 type Thesis struct {
-	Title     string `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
-	File      string `protobuf:"bytes,2,opt,name=file,proto3" json:"file,omitempty"`
-	CreatedAt string `protobuf:"bytes,3,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
-	Language  string `protobuf:"bytes,4,opt,name=language,proto3" json:"language,omitempty"`
-	Topic     string `protobuf:"bytes,5,opt,name=topic,proto3" json:"topic,omitempty"`
-	PageCount string `protobuf:"bytes,6,opt,name=pageCount,proto3" json:"pageCount,omitempty"`
-	Author    string `protobuf:"bytes,7,opt,name=author,proto3" json:"author,omitempty"`
+	Id        uint64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Title     string `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	File      string `protobuf:"bytes,3,opt,name=file,proto3" json:"file,omitempty"`
+	CreatedAt string `protobuf:"bytes,4,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
+	Language  string `protobuf:"bytes,5,opt,name=language,proto3" json:"language,omitempty"`
+	Topic     string `protobuf:"bytes,6,opt,name=topic,proto3" json:"topic,omitempty"`
+	PageCount string `protobuf:"bytes,7,opt,name=pageCount,proto3" json:"pageCount,omitempty"`
+	Author    string `protobuf:"bytes,8,opt,name=author,proto3" json:"author,omitempty"`
 }
 
 func (m *Thesis) Reset()         { *m = Thesis{} }
@@ -64,6 +65,13 @@ func (m *Thesis) XXX_DiscardUnknown() {
 }
 
 var xxx_messageInfo_Thesis proto.InternalMessageInfo
+
+func (m *Thesis) GetId() uint64 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
 
 func (m *Thesis) GetTitle() string {
 	if m != nil {
@@ -121,21 +129,22 @@ func init() {
 func init() { proto.RegisterFile("thesis/thesis.proto", fileDescriptor_02a86327873e5ba7) }
 
 var fileDescriptor_02a86327873e5ba7 = []byte{
-	// 212 bytes of a gzipped FileDescriptorProto
+	// 228 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0x2e, 0xc9, 0x48, 0x2d,
 	0xce, 0x2c, 0xd6, 0x87, 0x50, 0x7a, 0x05, 0x45, 0xf9, 0x25, 0xf9, 0x42, 0xbc, 0x50, 0x1e, 0x84,
-	0x52, 0xda, 0xc1, 0xc8, 0xc5, 0x16, 0x02, 0x66, 0x0a, 0x89, 0x70, 0xb1, 0x96, 0x64, 0x96, 0xe4,
-	0xa4, 0x4a, 0x30, 0x2a, 0x30, 0x6a, 0x70, 0x06, 0x41, 0x38, 0x42, 0x42, 0x5c, 0x2c, 0x69, 0x99,
-	0x39, 0xa9, 0x12, 0x4c, 0x60, 0x41, 0x30, 0x5b, 0x48, 0x86, 0x8b, 0x33, 0xb9, 0x28, 0x35, 0xb1,
-	0x24, 0x35, 0xc5, 0xb1, 0x44, 0x82, 0x19, 0x2c, 0x81, 0x10, 0x10, 0x92, 0xe2, 0xe2, 0xc8, 0x49,
-	0xcc, 0x4b, 0x2f, 0x4d, 0x4c, 0x4f, 0x95, 0x60, 0x01, 0x4b, 0xc2, 0xf9, 0x60, 0x3b, 0xf2, 0x0b,
-	0x32, 0x93, 0x25, 0x58, 0xa1, 0x76, 0x80, 0x38, 0x20, 0xf3, 0x0a, 0x12, 0xd3, 0x53, 0x9d, 0xf3,
-	0x4b, 0xf3, 0x4a, 0x24, 0xd8, 0x20, 0xe6, 0xc1, 0x05, 0x84, 0xc4, 0xb8, 0xd8, 0x12, 0x4b, 0x4b,
-	0x32, 0xf2, 0x8b, 0x24, 0xd8, 0xc1, 0x52, 0x50, 0x9e, 0x93, 0xfe, 0x89, 0x47, 0x72, 0x8c, 0x17,
+	0x52, 0x3a, 0xc1, 0xc8, 0xc5, 0x16, 0x02, 0x66, 0x0a, 0xf1, 0x71, 0x31, 0x65, 0xa6, 0x48, 0x30,
+	0x2a, 0x30, 0x6a, 0xb0, 0x04, 0x31, 0x65, 0xa6, 0x08, 0x89, 0x70, 0xb1, 0x96, 0x64, 0x96, 0xe4,
+	0xa4, 0x4a, 0x30, 0x29, 0x30, 0x6a, 0x70, 0x06, 0x41, 0x38, 0x42, 0x42, 0x5c, 0x2c, 0x69, 0x99,
+	0x39, 0xa9, 0x12, 0xcc, 0x60, 0x41, 0x30, 0x5b, 0x48, 0x86, 0x8b, 0x33, 0xb9, 0x28, 0x35, 0xb1,
+	0x24, 0x35, 0xc5, 0xb1, 0x44, 0x82, 0x05, 0x2c, 0x81, 0x10, 0x10, 0x92, 0xe2, 0xe2, 0xc8, 0x49,
+	0xcc, 0x4b, 0x2f, 0x4d, 0x4c, 0x4f, 0x95, 0x60, 0x05, 0x4b, 0xc2, 0xf9, 0x60, 0x3b, 0xf2, 0x0b,
+	0x32, 0x93, 0x25, 0xd8, 0xa0, 0x76, 0x80, 0x38, 0x20, 0xf3, 0x0a, 0x12, 0xd3, 0x53, 0x9d, 0xf3,
+	0x4b, 0xf3, 0x4a, 0x24, 0xd8, 0x21, 0xe6, 0xc1, 0x05, 0x84, 0xc4, 0xb8, 0xd8, 0x12, 0x4b, 0x4b,
+	0x32, 0xf2, 0x8b, 0x24, 0x38, 0xc0, 0x52, 0x50, 0x9e, 0x93, 0xfe, 0x89, 0x47, 0x72, 0x8c, 0x17,
 	0x1e, 0xc9, 0x31, 0x3e, 0x78, 0x24, 0xc7, 0x38, 0xe1, 0xb1, 0x1c, 0xc3, 0x85, 0xc7, 0x72, 0x0c,
-	0x37, 0x1e, 0xcb, 0x31, 0x44, 0x89, 0x42, 0x3d, 0x5e, 0xa1, 0x0f, 0x0b, 0x81, 0xca, 0x82, 0xd4,
-	0xe2, 0x24, 0x36, 0x70, 0x08, 0x18, 0x03, 0x02, 0x00, 0x00, 0xff, 0xff, 0xc6, 0x47, 0x39, 0x0f,
-	0x18, 0x01, 0x00, 0x00,
+	0x37, 0x1e, 0xcb, 0x31, 0x44, 0x89, 0x42, 0x03, 0xa2, 0x42, 0x1f, 0x16, 0x22, 0x95, 0x05, 0xa9,
+	0xc5, 0x49, 0x6c, 0xe0, 0x10, 0x31, 0x06, 0x04, 0x00, 0x00, 0xff, 0xff, 0xf4, 0xfd, 0xc0, 0x51,
+	0x28, 0x01, 0x00, 0x00,
 }
 
 func (m *Thesis) Marshal() (dAtA []byte, err error) {
@@ -163,49 +172,54 @@ func (m *Thesis) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		copy(dAtA[i:], m.Author)
 		i = encodeVarintThesis(dAtA, i, uint64(len(m.Author)))
 		i--
-		dAtA[i] = 0x3a
+		dAtA[i] = 0x42
 	}
 	if len(m.PageCount) > 0 {
 		i -= len(m.PageCount)
 		copy(dAtA[i:], m.PageCount)
 		i = encodeVarintThesis(dAtA, i, uint64(len(m.PageCount)))
 		i--
-		dAtA[i] = 0x32
+		dAtA[i] = 0x3a
 	}
 	if len(m.Topic) > 0 {
 		i -= len(m.Topic)
 		copy(dAtA[i:], m.Topic)
 		i = encodeVarintThesis(dAtA, i, uint64(len(m.Topic)))
 		i--
-		dAtA[i] = 0x2a
+		dAtA[i] = 0x32
 	}
 	if len(m.Language) > 0 {
 		i -= len(m.Language)
 		copy(dAtA[i:], m.Language)
 		i = encodeVarintThesis(dAtA, i, uint64(len(m.Language)))
 		i--
-		dAtA[i] = 0x22
+		dAtA[i] = 0x2a
 	}
 	if len(m.CreatedAt) > 0 {
 		i -= len(m.CreatedAt)
 		copy(dAtA[i:], m.CreatedAt)
 		i = encodeVarintThesis(dAtA, i, uint64(len(m.CreatedAt)))
 		i--
-		dAtA[i] = 0x1a
+		dAtA[i] = 0x22
 	}
 	if len(m.File) > 0 {
 		i -= len(m.File)
 		copy(dAtA[i:], m.File)
 		i = encodeVarintThesis(dAtA, i, uint64(len(m.File)))
 		i--
-		dAtA[i] = 0x12
+		dAtA[i] = 0x1a
 	}
 	if len(m.Title) > 0 {
 		i -= len(m.Title)
 		copy(dAtA[i:], m.Title)
 		i = encodeVarintThesis(dAtA, i, uint64(len(m.Title)))
 		i--
-		dAtA[i] = 0xa
+		dAtA[i] = 0x12
+	}
+	if m.Id != 0 {
+		i = encodeVarintThesis(dAtA, i, uint64(m.Id))
+		i--
+		dAtA[i] = 0x8
 	}
 	return len(dAtA) - i, nil
 }
@@ -227,6 +241,9 @@ func (m *Thesis) Size() (n int) {
 	}
 	var l int
 	_ = l
+	if m.Id != 0 {
+		n += 1 + sovThesis(uint64(m.Id))
+	}
 	l = len(m.Title)
 	if l > 0 {
 		n += 1 + l + sovThesis(uint64(l))
@@ -294,6 +311,25 @@ func (m *Thesis) Unmarshal(dAtA []byte) error {
 		}
 		switch fieldNum {
 		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+			}
+			m.Id = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowThesis
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Id |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Title", wireType)
 			}
@@ -325,7 +361,7 @@ func (m *Thesis) Unmarshal(dAtA []byte) error {
 			}
 			m.Title = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 2:
+		case 3:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field File", wireType)
 			}
@@ -357,7 +393,7 @@ func (m *Thesis) Unmarshal(dAtA []byte) error {
 			}
 			m.File = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 3:
+		case 4:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field CreatedAt", wireType)
 			}
@@ -389,7 +425,7 @@ func (m *Thesis) Unmarshal(dAtA []byte) error {
 			}
 			m.CreatedAt = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 4:
+		case 5:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Language", wireType)
 			}
@@ -421,7 +457,7 @@ func (m *Thesis) Unmarshal(dAtA []byte) error {
 			}
 			m.Language = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 5:
+		case 6:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Topic", wireType)
 			}
@@ -453,7 +489,7 @@ func (m *Thesis) Unmarshal(dAtA []byte) error {
 			}
 			m.Topic = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 6:
+		case 7:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field PageCount", wireType)
 			}
@@ -485,7 +521,7 @@ func (m *Thesis) Unmarshal(dAtA []byte) error {
 			}
 			m.PageCount = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 7:
+		case 8:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Author", wireType)
 			}

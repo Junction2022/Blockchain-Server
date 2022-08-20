@@ -1,9 +1,11 @@
 /* eslint-disable */
-import { Writer, Reader } from "protobufjs/minimal";
+import * as Long from "long";
+import { util, configure, Writer, Reader } from "protobufjs/minimal";
 
 export const protobufPackage = "thesis.thesis";
 
 export interface Thesis {
+  id: number;
   title: string;
   file: string;
   createdAt: string;
@@ -14,6 +16,7 @@ export interface Thesis {
 }
 
 const baseThesis: object = {
+  id: 0,
   title: "",
   file: "",
   createdAt: "",
@@ -25,26 +28,29 @@ const baseThesis: object = {
 
 export const Thesis = {
   encode(message: Thesis, writer: Writer = Writer.create()): Writer {
+    if (message.id !== 0) {
+      writer.uint32(8).uint64(message.id);
+    }
     if (message.title !== "") {
-      writer.uint32(10).string(message.title);
+      writer.uint32(18).string(message.title);
     }
     if (message.file !== "") {
-      writer.uint32(18).string(message.file);
+      writer.uint32(26).string(message.file);
     }
     if (message.createdAt !== "") {
-      writer.uint32(26).string(message.createdAt);
+      writer.uint32(34).string(message.createdAt);
     }
     if (message.language !== "") {
-      writer.uint32(34).string(message.language);
+      writer.uint32(42).string(message.language);
     }
     if (message.topic !== "") {
-      writer.uint32(42).string(message.topic);
+      writer.uint32(50).string(message.topic);
     }
     if (message.pageCount !== "") {
-      writer.uint32(50).string(message.pageCount);
+      writer.uint32(58).string(message.pageCount);
     }
     if (message.author !== "") {
-      writer.uint32(58).string(message.author);
+      writer.uint32(66).string(message.author);
     }
     return writer;
   },
@@ -57,24 +63,27 @@ export const Thesis = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.title = reader.string();
+          message.id = longToNumber(reader.uint64() as Long);
           break;
         case 2:
-          message.file = reader.string();
+          message.title = reader.string();
           break;
         case 3:
-          message.createdAt = reader.string();
+          message.file = reader.string();
           break;
         case 4:
-          message.language = reader.string();
+          message.createdAt = reader.string();
           break;
         case 5:
-          message.topic = reader.string();
+          message.language = reader.string();
           break;
         case 6:
-          message.pageCount = reader.string();
+          message.topic = reader.string();
           break;
         case 7:
+          message.pageCount = reader.string();
+          break;
+        case 8:
           message.author = reader.string();
           break;
         default:
@@ -87,6 +96,11 @@ export const Thesis = {
 
   fromJSON(object: any): Thesis {
     const message = { ...baseThesis } as Thesis;
+    if (object.id !== undefined && object.id !== null) {
+      message.id = Number(object.id);
+    } else {
+      message.id = 0;
+    }
     if (object.title !== undefined && object.title !== null) {
       message.title = String(object.title);
     } else {
@@ -127,6 +141,7 @@ export const Thesis = {
 
   toJSON(message: Thesis): unknown {
     const obj: any = {};
+    message.id !== undefined && (obj.id = message.id);
     message.title !== undefined && (obj.title = message.title);
     message.file !== undefined && (obj.file = message.file);
     message.createdAt !== undefined && (obj.createdAt = message.createdAt);
@@ -139,6 +154,11 @@ export const Thesis = {
 
   fromPartial(object: DeepPartial<Thesis>): Thesis {
     const message = { ...baseThesis } as Thesis;
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    } else {
+      message.id = 0;
+    }
     if (object.title !== undefined && object.title !== null) {
       message.title = object.title;
     } else {
@@ -178,6 +198,16 @@ export const Thesis = {
   },
 };
 
+declare var self: any | undefined;
+declare var window: any | undefined;
+var globalThis: any = (() => {
+  if (typeof globalThis !== "undefined") return globalThis;
+  if (typeof self !== "undefined") return self;
+  if (typeof window !== "undefined") return window;
+  if (typeof global !== "undefined") return global;
+  throw "Unable to locate global object";
+})();
+
 type Builtin = Date | Function | Uint8Array | string | number | undefined;
 export type DeepPartial<T> = T extends Builtin
   ? T
@@ -188,3 +218,15 @@ export type DeepPartial<T> = T extends Builtin
   : T extends {}
   ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
+
+function longToNumber(long: Long): number {
+  if (long.gt(Number.MAX_SAFE_INTEGER)) {
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+  }
+  return long.toNumber();
+}
+
+if (util.Long !== Long) {
+  util.Long = Long as any;
+  configure();
+}

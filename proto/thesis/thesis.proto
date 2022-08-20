@@ -4,11 +4,12 @@ package thesis.thesis;
 option go_package = "thesis/x/thesis/types";
 
 message Thesis {
-    string title = 1;
-    string file = 2;
-    string createdAt = 3;
-    string language = 4;
-    string topic = 5;
-    string pageCount = 6;
-    string author = 7;
+    uint64 id = 1;
+    string title = 2;
+    string file = 3;
+    string createdAt = 4;
+    string language = 5;
+    string topic = 6;
+    string pageCount = 7;
+    string author = 8;
 }
