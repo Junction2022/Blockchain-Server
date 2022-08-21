@@ -1,11 +1,6 @@
 /* eslint-disable */
 import { Reader, Writer } from "protobufjs/minimal";
 import { Params } from "../thesis/params";
-import {
-  PageRequest,
-  PageResponse,
-} from "../cosmos/base/query/v1beta1/pagination";
-import { Thesis } from "../thesis/thesis";
 
 export const protobufPackage = "thesis.thesis";
 
@@ -16,15 +11,6 @@ export interface QueryParamsRequest {}
 export interface QueryParamsResponse {
   /** params holds all the parameters of this module. */
   params: Params | undefined;
-}
-
-export interface QueryThesisRequest {
-  pagination: PageRequest | undefined;
-}
-
-export interface QueryThesisResponse {
-  Thesis: Thesis[];
-  pagination: PageResponse | undefined;
 }
 
 const baseQueryParamsRequest: object = {};
@@ -119,157 +105,6 @@ export const QueryParamsResponse = {
       message.params = Params.fromPartial(object.params);
     } else {
       message.params = undefined;
-    }
-    return message;
-  },
-};
-
-const baseQueryThesisRequest: object = {};
-
-export const QueryThesisRequest = {
-  encode(
-    message: QueryThesisRequest,
-    writer: Writer = Writer.create()
-  ): Writer {
-    if (message.pagination !== undefined) {
-      PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
-    }
-    return writer;
-  },
-
-  decode(input: Reader | Uint8Array, length?: number): QueryThesisRequest {
-    const reader = input instanceof Uint8Array ? new Reader(input) : input;
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseQueryThesisRequest } as QueryThesisRequest;
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.pagination = PageRequest.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-
-  fromJSON(object: any): QueryThesisRequest {
-    const message = { ...baseQueryThesisRequest } as QueryThesisRequest;
-    if (object.pagination !== undefined && object.pagination !== null) {
-      message.pagination = PageRequest.fromJSON(object.pagination);
-    } else {
-      message.pagination = undefined;
-    }
-    return message;
-  },
-
-  toJSON(message: QueryThesisRequest): unknown {
-    const obj: any = {};
-    message.pagination !== undefined &&
-      (obj.pagination = message.pagination
-        ? PageRequest.toJSON(message.pagination)
-        : undefined);
-    return obj;
-  },
-
-  fromPartial(object: DeepPartial<QueryThesisRequest>): QueryThesisRequest {
-    const message = { ...baseQueryThesisRequest } as QueryThesisRequest;
-    if (object.pagination !== undefined && object.pagination !== null) {
-      message.pagination = PageRequest.fromPartial(object.pagination);
-    } else {
-      message.pagination = undefined;
-    }
-    return message;
-  },
-};
-
-const baseQueryThesisResponse: object = {};
-
-export const QueryThesisResponse = {
-  encode(
-    message: QueryThesisResponse,
-    writer: Writer = Writer.create()
-  ): Writer {
-    for (const v of message.Thesis) {
-      Thesis.encode(v!, writer.uint32(10).fork()).ldelim();
-    }
-    if (message.pagination !== undefined) {
-      PageResponse.encode(
-        message.pagination,
-        writer.uint32(18).fork()
-      ).ldelim();
-    }
-    return writer;
-  },
-
-  decode(input: Reader | Uint8Array, length?: number): QueryThesisResponse {
-    const reader = input instanceof Uint8Array ? new Reader(input) : input;
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = { ...baseQueryThesisResponse } as QueryThesisResponse;
-    message.Thesis = [];
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.Thesis.push(Thesis.decode(reader, reader.uint32()));
-          break;
-        case 2:
-          message.pagination = PageResponse.decode(reader, reader.uint32());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-
-  fromJSON(object: any): QueryThesisResponse {
-    const message = { ...baseQueryThesisResponse } as QueryThesisResponse;
-    message.Thesis = [];
-    if (object.Thesis !== undefined && object.Thesis !== null) {
-      for (const e of object.Thesis) {
-        message.Thesis.push(Thesis.fromJSON(e));
-      }
-    }
-    if (object.pagination !== undefined && object.pagination !== null) {
-      message.pagination = PageResponse.fromJSON(object.pagination);
-    } else {
-      message.pagination = undefined;
-    }
-    return message;
-  },
-
-  toJSON(message: QueryThesisResponse): unknown {
-    const obj: any = {};
-    if (message.Thesis) {
-      obj.Thesis = message.Thesis.map((e) =>
-        e ? Thesis.toJSON(e) : undefined
-      );
-    } else {
-      obj.Thesis = [];
-    }
-    message.pagination !== undefined &&
-      (obj.pagination = message.pagination
-        ? PageResponse.toJSON(message.pagination)
-        : undefined);
-    return obj;
-  },
-
-  fromPartial(object: DeepPartial<QueryThesisResponse>): QueryThesisResponse {
-    const message = { ...baseQueryThesisResponse } as QueryThesisResponse;
-    message.Thesis = [];
-    if (object.Thesis !== undefined && object.Thesis !== null) {
-      for (const e of object.Thesis) {
-        message.Thesis.push(Thesis.fromPartial(e));
-      }
-    }
-    if (object.pagination !== undefined && object.pagination !== null) {
-      message.pagination = PageResponse.fromPartial(object.pagination);
-    } else {
-      message.pagination = undefined;
     }
     return message;
   },

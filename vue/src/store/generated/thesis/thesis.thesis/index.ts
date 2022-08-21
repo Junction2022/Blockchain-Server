@@ -1,12 +1,9 @@
 import { txClient, queryClient, MissingWalletError , registry} from './module'
 
 import { Params } from "./module/types/thesis/params"
-import { QueryThesisRequest } from "./module/types/thesis/query"
-import { QueryThesisResponse } from "./module/types/thesis/query"
-import { Thesis } from "./module/types/thesis/thesis"
 
 
-export { Params, QueryThesisRequest, QueryThesisResponse, Thesis };
+export { Params };
 
 async function initTxClient(vuexGetters) {
 	return await txClient(vuexGetters['common/wallet/signer'], {
@@ -48,9 +45,6 @@ const getDefaultState = () => {
 				
 				_Structure: {
 						Params: getStructure(Params.fromPartial({})),
-						QueryThesisRequest: getStructure(QueryThesisRequest.fromPartial({})),
-						QueryThesisResponse: getStructure(QueryThesisResponse.fromPartial({})),
-						Thesis: getStructure(Thesis.fromPartial({})),
 						
 		},
 		_Registry: registry,

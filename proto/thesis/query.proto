@@ -27,16 +27,3 @@ message QueryParamsResponse {
   // params holds all the parameters of this module.
   Params params = 1 [(gogoproto.nullable) = false];
 }
-
-message QueryThesisRequest {
-  cosmos.base.query.v1beta1.PageRequest pagination = 1;
-}
-
-message QueryThesisResponse {
-  repeated Thesis Thesis = 1;
-
-  cosmos.base.query.v1beta1.PageResponse pagination = 2;
-}
-
-
-
